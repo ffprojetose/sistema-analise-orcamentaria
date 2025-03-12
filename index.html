@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Análise Orçamentária</title>
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-logo-area">
+        <div id="logo-container">
+          <img id="company-logo" class="logo-image" src="https://via.placeholder.com/150x50" alt="Logo da Empresa">
+        </div>
+        <div class="logo">Sistema de Análise Orçamentária</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#inicio" class="nav-link active" data-tab="inicio">Início</a>
+        <a href="#projetos" class="nav-link" data-tab="projetos">Meus Projetos</a>
+        <a href="#novo-projeto" class="nav-link" data-tab="novo-projeto">Novo Projeto</a>
+        <a href="#analise" class="nav-link" data-tab="analise">Análise</a>
+      </nav>
+    </header>
+    
+    <!-- Tab: Início -->
+    <div id="inicio" class="tab-content active">
+      <h2>Bem-vindo ao Sistema de Análise Orçamentária</h2>
+      
+      <p class="welcome-message">
+        Esta ferramenta permite criar, gerenciar e analisar orçamentos para projetos de construção civil. 
+        Você pode estimar custos, visualizar a distribuição de despesas por categoria e comparar valores com referências de mercado.
+      </p>
+      
+      <div class="actions-container">
+        <button class="btn" id="btn-ver-projetos">Ver Meus Projetos</button>
+        <button class="btn" id="btn-novo-projeto">Criar Novo Projeto</button>
+      </div>
+      
+      <div class="create-new-project">
+        <h3>Projetos Recentes</h3>
+        <div id="projetos-recentes">
+          <!-- Projetos recentes serão inseridos aqui -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tab: Projetos -->
+    <div id="projetos" class="tab-content">
+      <div class="projects-header">
+        <h2>Meus Projetos</h2>
+        <div class="project-filters">
+          <span class="filter-label">Filtrar:</span>
+          <input type="text" class="search-box" id="projeto-busca" placeholder="Buscar projeto...">
+        </div>
+      </div>
+      
+      <div class="btn-container">
+        <button class="btn" id="btn-criar-projeto">
+          <i class="fas fa-plus"></i> Criar Novo Projeto
+        </button>
+      </div>
+      
+      <div class="projects-list" id="lista-projetos">
+        <!-- Lista de projetos será preenchida dinamicamente -->
+      </div>
+    </div>
+    
+    <!-- Tab: Novo Projeto -->
+    <div id="novo-projeto" class="tab-content">
+      <h2>Novo Projeto</h2>
+      
+      <form id="projeto-form">
+        <div class="form-group">
+          <label for="nome-projeto">Nome do Projeto</label>
+          <input type="text" id="nome-projeto" name="nome-projeto" placeholder="Ex: Residência Família Silva" required>
+        </div>
+        
+        <div class="input-row">
+          <div class="form-group">
+            <label for="area-construida">Área Construída (m²)</label>
+            <input type="number" id="area-construida" name="area-construida" step="0.01" min="0" placeholder="Ex: 597.50" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="tipo-projeto">Tipo de Projeto</label>
+            <select id="tipo-projeto" name="tipo-projeto" required>
+              <option value="">Selecione...</option>
+              <option value="residencial">Residencial</option>
+              <option value="comercial">Comercial</option>
+              <option value="industrial">Industrial</option>
+              <option value="institucional">Institucional</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="descricao-projeto">Descrição do Projeto</label>
+          <textarea id="descricao-projeto" name="descricao-projeto" rows="4" placeholder="Descreva as principais características do projeto..."></textarea>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-card-title">Características do Projeto</div>
+          
+          <div class="input-row">
+            <div class="form-group">
+              <label for="num-pavimentos">Número de Pavimentos</label>
+              <input type="number" id="num-pavimentos" name="num-pavimentos" min="1" value="2">
+            </div>
+            
+            <div class="form-group">
+              <label for="num-suites">Número de Suítes</label>
+              <input type="number" id="num-suites" name="num-suites" min="0" value="4">
+            </div>
+            
+            <div class="form-group">
+              <label for="num-banheiros">Número de Banheiros</label>
+              <input type="number" id="num-banheiros" name="num-banheiros" min="0" value="8">
+            </div>
+          </div>
+          
+          <div class="input-row">
+            <div class="form-group">
+              <label for="possui-piscina">Possui Piscina?</label>
+              <select id="possui-piscina" name="possui-piscina">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="possui-elevador">Possui Elevador?</label>
+              <select id="possui-elevador" name="possui-elevador">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="tipo-fundacao">Tipo de Fundação</label>
+              <select id="tipo-fundacao" name="tipo-fundacao">
+                <option value="radier">Radier</option>
+                <option value="sapata">Sapata</option>
+                <option value="estaca">Estaca</option>
+                <option value="tubulao">Tubulão</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-row">
+            <div class="form-group">
+              <label for="tipo-cobertura">Tipo de Cobertura</label>
+              <select id="tipo-cobertura" name="tipo-cobertura">
+                <option value="telhado">Telhado Convencional</option>
+                <option value="laje">Laje Impermeabilizada</option>
+                <option value="telhado-embutido">Telhado Embutido</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="padrao-acabamento">Padrão de Acabamento</label>
+              <select id="padrao-acabamento" name="padrao-acabamento">
+                <option value="baixo">Baixo</option>
+                <option value="medio">Médio</option>
+                <option value="alto" selected>Alto</option>
+                <option value="luxo">Luxo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Arquivos do Projeto</label>
+          <div class="file-upload">
+            <label for="upload-files" class="file-upload-label">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <div class="file-upload-message">Clique aqui para fazer upload dos arquivos do projeto</div>
+              <div class="file-upload-message">(PDF, DWG, plantas, cortes, etc.)</div>
+            </label>
+            <input type="file" id="upload-files" class="file-upload-input" multiple accept=".pdf,.dwg,.jpg,.jpeg,.png">
+          </div>
+          
+          <div id="file-list" class="file-list" style="display: none;">
+            <!-- Os arquivos serão listados aqui dinamicamente -->
+          </div>
+        </div>
+        
+        <div class="step-nav">
+          <button type="button" class="btn" id="analisar-projeto-btn">Analisar Projeto</button>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Tab: Análise -->
+    <div id="analise" class="tab-content">
+      <h2>Análise Orçamentária</h2>
+      <div id="analise-conteudo">
+        <!-- Conteúdo da análise será preenchido dinamicamente -->
+        <p class="empty-message">Selecione um projeto para visualizar a análise orçamentária.</p>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Sistema de Análise Orçamentária &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+  </div>
+  
+  <!-- Scripts JavaScript -->
+  <script src="js/projetos.js"></script>
+  <script src="js/analise.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
